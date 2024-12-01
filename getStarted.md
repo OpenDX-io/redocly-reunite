@@ -130,7 +130,7 @@ A typical Redocly project structure looks like this:
 
 Create a welcoming landing page for your project. Use Markdown or Markdoc.
 
-```
+```bash
 # Welcome to My API
 
 This API lets you manage resources efficiently and build powerful integrations.
@@ -148,7 +148,7 @@ Add more content pages like about.md and style-guide.md
 
 Example: `about.md`
 
-```
+```bash
 # About
 
 This project provides an excellent way to document APIs and developer guides.
@@ -262,7 +262,6 @@ To begin, ensure your project has a `redocly.yaml` file at its root directory. T
 For example, if your project supports English, Spanish, French, and Simplified Chinese, your folder structure might look like this:
 
 ```
-
 your-awesome-project
 ├── @l10n
 │   ├── en        # English (Default)
@@ -271,8 +270,6 @@ your-awesome-project
 │   ├── zh-Hans   # Chinese (Simplified)
 ├── index.md      # Default language content
 └── redocly.yaml  # Project configuration
-
-
 ```
 
 Once your folder structure is ready, the next step is to configure localization in your redocly.yaml file. The l10n key allows you to define the supported languages and set the default language for your project. Under the locales option, list all the languages you want to include. Each language requires a code, which should match the folder name, and a name, which is the label displayed in the language picker on your site.
