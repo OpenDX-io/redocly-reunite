@@ -1,0 +1,34 @@
+logo:
+  image: ./images/redocly-logo.png
+
+l10n:
+  defaultLocale: en
+  locales:
+    - code: en
+      name: English
+    - code: fr-FR
+      name: French (France)
+    - code: pt-BR
+      name: Portuguese (Brazil)
+
+apis:
+  demo@v1.0:
+    root: "apis/openapi.yaml"
+    openapi:
+      hideDownloadButtons: true
+      hideInfoMetadata: true
+
+footer:
+  items:
+    - group: Redocly
+      items:
+        - href: https://redocly.com
+          label: Redocly.com
+        - href: https://redocly.com/docs
+          label: Redocly docs
+    - group: Docs Resources
+      items:
+        - href: https://markdoc.dev/
+          label: Markdoc
+        - href: https://openapis.org
+          label: OpenAPI

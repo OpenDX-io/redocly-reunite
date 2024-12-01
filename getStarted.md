@@ -1,0 +1,346 @@
+# Comprehensive Guide to Getting Started with Redocly Reunite
+
+Redocly Reunite is a modern platform for building and publishing API documentation and developer portals. It represents a significant evolution from the previous developer portal, introducing numerous enhancements designed to improve the developer experience and documentation usability. This guide will walk you through the steps to get started with Redocly Reunite, from setting up your project locally to publishing your documentation. Along the way, you'll learn about the project structure, key configuration options, and styling features.
+
+## Key Improvements in Redocly Reunite
+
+Compared to its predecessor, Redocly Reunite delivers cutting-edge enhancements and features, making it a compelling choice for developers and API providers. Here’s an overview of the notable improvements:
+
+### 1. Modern User Interface (UI)
+
+The new UI is designed for an intuitive and visually appealing experience:
+
+- Clean, modern design layouts.
+- Improved navigation with collapsible sidebars and grouped menus.
+- A responsive interface for seamless access across devices.
+
+### 2. Dark and Light Themes
+
+Reunite introduces built-in support for dark and light modes, allowing users to toggle between themes based on their preferences or system settings. This ensures:
+
+- Enhanced readability in various lighting conditions.
+- A more engaging experience for developers.
+
+### 3. Advanced Customization
+
+Redocly Reunite allows developers to tailor the portal to their brand and functional requirements:
+
+- Custom styles using CSS and theme variables.
+- Configurable navigation menus and sidebars.
+- Custom components and layout options to align with your organization’s branding.
+
+### 4. Localization
+
+The platform now supports localization and internationalization, enabling developers to create multilingual documentation for global audiences. Key features include:
+
+- Language-specific content and navigation.
+- Dynamic language switching.
+- Support for regional formatting and localization standards.
+
+### 5. Reunite introduces a powerful search engine that delivers faster, more accurate results:
+
+- Context-aware search with instant suggestions.
+- Highlighted matching terms for quick identification.
+- Ability to search within APIs, guides, and other content categories.
+
+### 6. Advanced “Try It” Feature
+
+The "Try It" feature in Redocly Reunite rivals tools like Postman, offering more advanced capabilities:
+
+- Execute live API requests directly from the documentation.
+- Pre-fill parameters and headers with example values.
+- Dynamic response visualization, including JSON and XML rendering.
+- Authentication support (e.g., API keys, OAuth tokens) for real-world testing scenarios.
+
+### 7. Enhanced API Reference
+
+Reunite elevates the API reference documentation with:
+
+- Clear separation of endpoints, parameters, and schemas.
+- Interactive examples and code snippets in multiple languages.
+- Enhanced schema visualization for complex APIs.
+
+### 8. Developer-Centric Features
+
+The platform includes several features tailored for developers:
+
+Markdown and OpenAPI support for content and API specifications.
+Linting and bundling tools to maintain high-quality documentation.
+CI/CD integration for automated updates and deployments.
+
+## Get Started
+
+### Prerequisites
+
+Before starting, ensure you have the following installed:
+
+- Node.js: Version 18 or later.
+- Redocly CLI: An open-source command-line tool for working with Redocly projects.
+
+### Install Redocly CLI:
+
+```bash
+npm install -g @redocly/cli@latest
+```
+
+Once installed, you can confirm the version with:
+
+```bash
+redocly --version
+```
+
+### Setting Up Your Redocly Project
+
+Create a New Project
+Run the following command to create a new project:
+
+```bash
+redocly init
+```
+
+This command initializes a new project structure with some basic files. Navigate to the project directory and start working.
+
+### Project Structure
+
+A typical Redocly project structure looks like this:
+
+```bash
+
+/my-redocly-project
+|-- @I10n/
+|   └── fr-FR
+|   └── pt-BR
+|       └── /apis
+|       └── index.md
+|-- @theme/
+|   └── styles.css
+|-- apis/
+|   └── openapi.yaml
+|-- images/
+|-- .gitignore
+|-- index.md
+|-- package.json
+|-- redolcy.yaml
+|-- sidebars.yaml
+```
+
+### Add Content
+
+#### Landing Page (`index.md`)
+
+Create a welcoming landing page for your project. Use Markdown or Markdoc.
+
+```
+# Welcome to My API
+
+This API lets you manage resources efficiently and build powerful integrations.
+
+## Features
+- RESTful API design
+- Developer-friendly documentation
+- Scalable and secure
+
+```
+
+#### Additional Pages
+
+Add more content pages like about.md and style-guide.md
+
+Example: `about.md`
+
+```
+# About
+
+This project provides an excellent way to document APIs and developer guides.
+
+```
+
+#### OpenAPI Definition
+
+Add your OpenAPI file (e.g., `openapi.yaml`) to the `apis/` folder.
+
+#### Sidebar Configuration
+
+The sidebar is auto-generated by default but can be customized using the `sidebars.yaml` file.
+
+```yaml
+- page: index.md
+  label: Home
+- page: about.md
+  label: About Us
+- page: style-guide.md
+  label: Style Guide
+- group: Verification
+  items:
+    - page: verification.yaml
+      label: Verification API
+      labelTranslationKey: navbar.verification.verification-api
+```
+
+**Explanation:**
+
+**1. Adding Individual Pages:**
+
+- Use the `page` key to specify the file path (e.g., `index.md`).
+- Use the `label` key to provide a meaningful name that appears in the sidebar (e.g., "Home").
+
+**2. Grouping Pages:**
+
+- Use the `group` key to create a group of related pages in the sidebar.
+- Under the group, use the `items` key to list the pages within the group.
+- Each item can have a `page` and a `label`.
+
+#### Styling and Theming
+
+To customize the appearance, use the `@theme/` folder.
+
+Example `styles.css:`
+
+```css
+:root {
+  --navbar-bg-color: #0799ee;
+  --h1-text-color: blue;
+}
+
+:root.dark {
+  --navbar-bg-color: #0799ee;
+  --h1-text-color: red;
+}
+```
+
+Ensure the `styles.css` file is included in the `@theme/` directory.
+
+#### Configuration
+
+The `redocly.yaml` file is where you define project-specific settings.
+
+Example `redocly.yaml:`
+
+```yaml
+logo:
+  image: ./images/redocly-logo.png
+
+l10n:
+  defaultLocale: en
+  locales:
+    - code: en
+      name: English
+    - code: fr-FR
+      name: French (France)
+    - code: pt-BR
+      name: Portuguese (Brazil)
+
+apis:
+  demo@v1.0:
+    root: "apis/openapi.yaml"
+    openapi:
+      hideDownloadButtons: true
+      hideInfoMetadata: true
+
+footer:
+  items:
+    - group: Redocly
+      items:
+        - href: https://redocly.com
+          label: Redocly.com
+        - href: https://redocly.com/docs
+          label: Redocly docs
+    - group: Docs Resources
+      items:
+        - href: https://markdoc.dev/
+          label: Markdoc
+        - href: https://openapis.org
+          label: OpenAPI
+```
+
+### Add Localization
+
+Localization is a powerful feature that enables you to provide your API documentation in multiple languages, making it accessible to a broader audience. In Redocly, setting up localization involves organizing your translated content into a structured format and configuring your project to recognize these translations. Here's how you can do it.
+
+To begin, ensure your project has a `redocly.yaml` file at its root directory. This file is essential for configuring the localization feature. Localization in Redocly relies on a specific folder structure. First, create a folder named `@l10n` in the root directory of your project. This folder will house all the translated content. Inside the `@l10n` folder, create subfolders for each language you want to support. It's recommended to name these folders using IETF language tags (e.g., `fr` for French, `es-ES` for Spanish - Spain, `zh-Hans` for Simplified Chinese). Each subfolder will contain the translated versions of your documentation files.
+
+For example, if your project supports English, Spanish, French, and Simplified Chinese, your folder structure might look like this:
+
+```
+
+your-awesome-project
+├── @l10n
+│   ├── en        # English (Default)
+│   ├── es-ES     # Spanish (Spain)
+│   ├── fr        # French
+│   ├── zh-Hans   # Chinese (Simplified)
+├── index.md      # Default language content
+└── redocly.yaml  # Project configuration
+
+
+```
+
+Once your folder structure is ready, the next step is to configure localization in your redocly.yaml file. The l10n key allows you to define the supported languages and set the default language for your project. Under the locales option, list all the languages you want to include. Each language requires a code, which should match the folder name, and a name, which is the label displayed in the language picker on your site.
+
+For instance, your redocly.yaml file might look like this:
+
+```yaml
+l10n:
+  defaultLocale: en # Default language
+  locales:
+    - code: en
+      name: English
+    - code: es-ES
+      name: Spanish (Spain)
+    - code: fr
+      name: French
+    - code: zh-Hans
+      name: Chinese (Simplified)
+```
+
+In this example, English (`en`) is set as the default language, and additional languages, including Spanish, French, and Simplified Chinese, are listed in the order they should appear in the language picker.
+
+After completing the configuration, Redocly automatically generates a language picker in your documentation's user interface. This feature allows users to switch seamlessly between the supported languages, enhancing their overall experience.
+
+Localization not only improves accessibility but also shows your commitment to catering to a diverse user base. By organizing your content thoughtfully and configuring it effectively, you can provide a professional, inclusive, and user-friendly multilingual documentation experience.
+
+#### Localized URL Structure in Redocly Projects
+
+When you enable localization in your Redocly project, the platform automatically introduces locale-specific URL structures. These URLs reflect the language and region settings configured in your project, allowing users to access documentation tailored to their preferred language or region. For example:
+
+- **_French (France):_** `http://127.0.0.1:4000/fr-fr/readme1#additional-pages`
+- **_Portuguese (Brazil):_** `http://127.0.0.1:4000/pt-br/readme1#additional-pages`
+
+The locale-specific segments, such as fr-fr or pt-br, are derived from the IETF language tags defined in your localization setup. This structured approach ensures that users are directed to the appropriate version of the documentation based on their chosen language or region.
+
+#### Enhancing User Experience with Localized URLs
+
+Localized URLs provide several advantages:
+
+1. Automatic Redirection: When users visit your site, they can be redirected to a locale-specific version based on their browser's language settings or geographic location. This ensures they view content in their preferred language without manual selection.
+
+2. SEO Benefits: Search engines can index each localized version of your documentation separately, improving discoverability for users searching in different languages.
+
+3. Consistent Navigation: With the locale embedded in the URL, users can bookmark or share links that directly lead to the version they need.
+
+#### How It Works
+
+When users navigate your project, the locale is included in the URL path. For example:
+
+- Visiting `http://127.0.0.1:4000/fr-fr/` displays the French version of the site.
+- Accessing `http://127.0.0.1:4000/pt-br/` opens the Portuguese version.
+
+This URL structure is seamlessly managed by Redocly, based on the configuration in your `redocly.yaml` file. Users can manually switch languages via the language picker, or they can be automatically redirected based on their preferences.
+
+By using localized URL structures, your documentation becomes more accessible, personalized, and easier to navigate, providing an enhanced experience for a global audience.
+
+### Preview Your Project
+
+Start the local development server to preview your work:
+
+```bash
+redocly preview
+```
+
+Access the site at [http://127.0.0.1:4000](http://127.0.0.1:4000)
+
+### View Our Redocly Demo
+
+We have prepared a demo GitHub repository to showcase how to set up and configure your Redocly project with localization, custom themes, and other advanced features. This demo will guide you through the process of building a fully functional developer portal, complete with multi-language support, an intuitive UI, and interactive API documentation.
+
+**_Visit our GitHub Repository:_** : [Redocly Demo GitHub Repository](https://github.com/OpenDX-io/redocly-reunite.git)

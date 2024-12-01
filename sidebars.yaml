@@ -1,0 +1,6 @@
+- page: index.md
+  label: Introduction
+- page: getStarted.md
+  label: Getting Started
+- group: Demo API
+  page: apis/openapi.yaml
